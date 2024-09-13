@@ -1,0 +1,20 @@
+<h1>Your Calendars</h1>
+
+<%= notice %>
+
+<%= link_to 'Logout', logout_path, data: { "turbo-method": :delete } %>
+
+<% @calendars.each do |calendar| %>
+  <h2><%= calendar.name %></h2>
+  <ul>
+    <% calendar.events.each do |event| %>
+      <li>
+        <strong><%= event.summary %></strong><br/>
+        <small><%= event.start_time %> - <%= event.end_time %></small>
+        <p><%= event.description %></p>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= button_to 'Sync Calendars & Events', sync_calendars_path, data: { "turbo-method": :post } %>
