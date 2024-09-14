@@ -1,5 +1,7 @@
 # Google Calendar Sync App
 
+[![CI](https://github.com/hinkoulabs/google_calendar_sync_app/actions/workflows/ci.yml/badge.svg)](https://github.com/hinkoulabs/google_calendar_sync_app/actions/workflows/ci.yml)
+
 ## 1. Description
 
 The **Google Calendar Sync App** allows users to log in using their Google account and synchronize their Google Calendar data with the application. The project utilizes **PostgreSQL** as the database, **Redis** for broadcasting Turbo Streams, and **Sidekiq** for background job processing to handle parallel calendar synchronization. This ensures users can manage and sync their Google Calendar events efficiently.
