@@ -121,7 +121,6 @@ GEM
       dotenv (= 3.1.2)
       railties (>= 6.1)
     drb (2.2.1)
-    error_highlight (0.6.0)
     erubi (1.13.0)
     execjs (2.9.1)
     faraday (2.11.0)
@@ -454,7 +453,6 @@ DEPENDENCIES
   dartsass-sprockets
   debug
   dotenv-rails
-  error_highlight (= 0.6.0)
   google-api-client (~> 0.53.0)
   googleauth
   importmap-rails
