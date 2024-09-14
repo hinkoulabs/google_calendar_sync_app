@@ -1,3 +1,7 @@
+<turbo-stream action="replace" target="no_calendars_message">
+  <template></template>
+</turbo-stream>
+
 <turbo-stream action="append" target="calendars-list">
   <template>
     <%= render partial: 'calendars/calendar', locals: { calendar: @calendar } %>

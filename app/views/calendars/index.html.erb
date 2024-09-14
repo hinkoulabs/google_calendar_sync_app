@@ -9,15 +9,15 @@
     </div>
   </div>
 
+  <% if @calendars.empty? %>
+    <%= render('calendars/no_calendars') %>
+  <% end %>
+
   <div id="user_calendars_list_<%= current_user.id %>">
     <% if @calendars.present? %>
       <% @calendars.each do |calendar| %>
           <%= render partial: 'calendars/calendar', locals: { calendar: calendar } %>
       <% end %>
-    <% else %>
-      <div class="alert alert-warning" role="alert">
-        <%= t('calendars.no_events') %>
-      </div>
     <% end %>
   </div>
 </div>

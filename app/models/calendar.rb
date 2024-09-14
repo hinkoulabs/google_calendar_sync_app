@@ -9,6 +9,8 @@ class Calendar < ApplicationRecord
   # broadcast on calendar creation to the current user's channel
   after_create_commit do
     broadcast_append_to user, target: "user_calendars_list_#{user.id}", partial: "calendars/calendar", locals: { calendar: self }
+
+    broadcast_replace_to user, target: "no_calendars_message", content: ""
   end
 
   # broadcast on calendar update to the current user's channel
@@ -19,6 +21,10 @@ class Calendar < ApplicationRecord
   # broadcast on calendar deletion to the current user's channel
   after_destroy_commit do
     broadcast_remove_to user, target: "calendar_#{self.id}"
+
+    if user.calendars.empty?
+      broadcast_replace_to user, target: "no_calendars_message", partial: "calendars/no_calendars"
+    end
   end
 
   def start_sync!
