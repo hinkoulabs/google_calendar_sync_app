@@ -39,7 +39,7 @@ gem "omniauth-google-oauth2"
 gem "googleauth"
 gem "google-api-client", "~> 0.53.0"
 
-gem "psych", "~> 4.0"
+gem "psych", "~> 5.1"
 gem "dartsass-sprockets"
 gem "bootstrap", "~> 5.3.3"
 

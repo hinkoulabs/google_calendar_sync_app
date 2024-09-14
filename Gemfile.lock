@@ -267,7 +267,7 @@ GEM
       racc
     pg (1.5.8)
     popper_js (2.11.8)
-    psych (4.0.6)
+    psych (5.1.2)
       stringio
     public_suffix (6.0.1)
     puma (6.4.2)
@@ -461,7 +461,7 @@ DEPENDENCIES
   omniauth
   omniauth-google-oauth2
   pg (~> 1.1)
-  psych (~> 4.0)
+  psych (~> 5.1)
   puma (>= 5.0)
   rails (~> 7.2.1)
   redis
