@@ -7,6 +7,6 @@ class CalendarsController < ApplicationController
 
   def sync
     SyncCalendarsJob.perform_later(current_user.id)
-    redirect_to calendars_path, notice: t('calendars.sync.success')
+    redirect_to calendars_path, notice: t("calendars.sync.success")
   end
 end

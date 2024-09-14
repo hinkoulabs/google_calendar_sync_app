@@ -1,9 +1,9 @@
-require 'test_helper'
-require 'google/apis/calendar_v3'
+require "test_helper"
+require "google/apis/calendar_v3"
 
 class SyncCalendarJobTest < ActiveJob::TestCase
   def mock_google_service(events)
-    event_list_mock = stubs('calendar_list_mock')
+    event_list_mock = stubs("calendar_list_mock")
     event_list_mock.expects(:items).returns(events)
     Google::Apis::CalendarV3::CalendarService.any_instance.expects(:list_events).returns(event_list_mock)
   end
@@ -24,17 +24,17 @@ class SyncCalendarJobTest < ActiveJob::TestCase
     mock_google_service(
       [
         OpenStruct.new(
-          id: 'id',
-          summary: 'summary',
-          description: 'description',
+          id: "id",
+          summary: "summary",
+          description: "description",
           start: OpenStruct.new(date_time: @time),
           end: OpenStruct.new(date_time: @time)
         )
       ]
     )
 
-    assert_difference('calendar.events.count') do
-      assert_no_difference('SyncErrorNotification.count') do
+    assert_difference("calendar.events.count") do
+      assert_no_difference("SyncErrorNotification.count") do
         SyncCalendarJob.perform_now(calendar.id)
       end
     end
@@ -45,9 +45,9 @@ class SyncCalendarJobTest < ActiveJob::TestCase
 
     assert_record_attributes(
       calendar.events.last,
-      google_id: 'id',
-      summary: 'summary',
-      description: 'description',
+      google_id: "id",
+      summary: "summary",
+      description: "description",
       start_time: @time,
       end_time: @time
     )
@@ -62,15 +62,15 @@ class SyncCalendarJobTest < ActiveJob::TestCase
       [
         OpenStruct.new(
           id: event.google_id,
-          summary: 'summary',
-          description: 'description',
+          summary: "summary",
+          description: "description",
           start: OpenStruct.new(date_time: @time),
           end: OpenStruct.new(date_time: @time)
         )
       ]
     )
 
-    assert_no_difference(['calendar.events.count', 'SyncErrorNotification.count']) do
+    assert_no_difference([ "calendar.events.count", "SyncErrorNotification.count" ]) do
       SyncCalendarJob.perform_now(event.calendar_id)
     end
 
@@ -83,8 +83,8 @@ class SyncCalendarJobTest < ActiveJob::TestCase
     assert_record_attributes(
       event,
       google_id: event.google_id,
-      summary: 'summary',
-      description: 'description',
+      summary: "summary",
+      description: "description",
       start_time: @time,
       end_time: @time
     )
@@ -98,24 +98,24 @@ class SyncCalendarJobTest < ActiveJob::TestCase
     mock_google_service(
       [
         OpenStruct.new(
-          id: 'ev111',
-          summary: 'summary',
-          description: 'description',
+          id: "ev111",
+          summary: "summary",
+          description: "description",
           start: OpenStruct.new(date_time: @time),
           end: OpenStruct.new(date_time: @time)
         ),
         OpenStruct.new(
-          id: 'ev222',
-          summary: 'summary 2',
-          description: 'description 2',
+          id: "ev222",
+          summary: "summary 2",
+          description: "description 2",
           start: OpenStruct.new(date_time: @time),
           end: OpenStruct.new(date_time: @time)
         )
       ]
     )
 
-    assert_difference('calendar.events.count', 1) do
-      assert_no_difference('SyncErrorNotification.count') do
+    assert_difference("calendar.events.count", 1) do
+      assert_no_difference("SyncErrorNotification.count") do
         SyncCalendarJob.perform_now(calendar.id)
       end
     end
@@ -127,17 +127,17 @@ class SyncCalendarJobTest < ActiveJob::TestCase
     assert_nil Event.find_by_id(event.id)
 
     assert_record_attributes(
-      calendar.events.find_by(google_id: 'ev111'),
-      summary: 'summary',
-      description: 'description',
+      calendar.events.find_by(google_id: "ev111"),
+      summary: "summary",
+      description: "description",
       start_time: @time,
       end_time: @time
     )
 
     assert_record_attributes(
-      calendar.events.find_by(google_id: 'ev222'),
-      summary: 'summary 2',
-      description: 'description 2',
+      calendar.events.find_by(google_id: "ev222"),
+      summary: "summary 2",
+      description: "description 2",
       start_time: @time,
       end_time: @time
     )
@@ -147,10 +147,10 @@ class SyncCalendarJobTest < ActiveJob::TestCase
     calendar = calendars(:one)
 
     # force the mock service to raise an error
-    Google::Apis::CalendarV3::CalendarService.any_instance.stubs(:list_events).raises(StandardError, 'Google API error')
+    Google::Apis::CalendarV3::CalendarService.any_instance.stubs(:list_events).raises(StandardError, "Google API error")
 
-    assert_difference('SyncErrorNotification.count', 1) do
-      assert_no_difference('Event.count') do
+    assert_difference("SyncErrorNotification.count", 1) do
+      assert_no_difference("Event.count") do
         SyncCalendarJob.perform_now(calendar.id)
       end
     end
@@ -159,6 +159,6 @@ class SyncCalendarJobTest < ActiveJob::TestCase
 
     assert_record_attributes calendar, syncing: false, synced_at: @now
 
-    assert_record_attributes SyncErrorNotification.last, message: 'Google API error', user: calendar.user
+    assert_record_attributes SyncErrorNotification.last, message: "Google API error", user: calendar.user
   end
 end

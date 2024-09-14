@@ -31,7 +31,7 @@ class SyncCalendarJob < GoogleCalendarJob
 
   # sync the events of a calendar (add, update, delete)
   def sync_events(service, calendar)
-    events = service.list_events(calendar.google_id, single_events: true, order_by: 'startTime', time_min: Time.now.iso8601).items
+    events = service.list_events(calendar.google_id, single_events: true, order_by: "startTime", time_min: Time.now.iso8601).items
 
     google_event_ids = events.map(&:id)
 

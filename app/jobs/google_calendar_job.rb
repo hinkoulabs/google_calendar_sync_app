@@ -1,4 +1,4 @@
-require 'google/apis/calendar_v3'
+require "google/apis/calendar_v3"
 class GoogleCalendarJob < ApplicationJob
   protected
 
@@ -6,9 +6,9 @@ class GoogleCalendarJob < ApplicationJob
     client = Signet::OAuth2::Client.new(
       access_token: user.access_token,
       refresh_token: user.refresh_token,
-      client_id: ENV['GOOGLE_CLIENT_ID'],
-      client_secret: ENV['GOOGLE_CLIENT_SECRET'],
-      token_credential_uri: 'https://accounts.google.com/o/oauth2/token'
+      client_id: ENV["GOOGLE_CLIENT_ID"],
+      client_secret: ENV["GOOGLE_CLIENT_SECRET"],
+      token_credential_uri: "https://accounts.google.com/o/oauth2/token"
     )
 
     if client.expired?

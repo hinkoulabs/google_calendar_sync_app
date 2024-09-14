@@ -1,9 +1,9 @@
 ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
-require 'mocha/minitest'
-require 'webmock/minitest'
-require 'omniauth'
+require "mocha/minitest"
+require "webmock/minitest"
+require "omniauth"
 
 module ActiveSupport
   class TestCase

@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class CalendarsControllerTest < ActionDispatch::IntegrationTest
   include SignInHelper
@@ -9,7 +9,7 @@ class CalendarsControllerTest < ActionDispatch::IntegrationTest
 
     get calendars_path
     assert_response :success
-    assert_select 'h1', text: "Calendars [test@gmail.com]"
+    assert_select "h1", text: "Calendars [test@gmail.com]"
   end
 
   test "should redirect to root_path on index if user is not logged in" do
