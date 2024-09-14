@@ -1,0 +1,14 @@
+<% if calendar.syncing? %>
+  <div class="alert alert-info">
+    <%= t('calendars.sync_status.syncing') %>
+  </div>
+<% else %>
+  <div class="alert alert-success">
+    <p><%= t('calendars.sync_status.completed') %></p>
+    <% if calendar.synced_at %>
+      <p><strong><%= t('calendars.sync_status.last_synced_at') %></strong> <%= display_time(calendar.synced_at) %></p>
+    <% else %>
+      <p><%= t('calendars.sync_status.not_synced') %></p>
+    <% end %>
+  </div>
+<% end %>

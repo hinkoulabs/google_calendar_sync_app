@@ -1,0 +1,20 @@
+<turbo-frame id="calendar_<%= calendar.id %>">
+  <div class="card mb-4">
+    <div class="card-header">
+      <h2><%= calendar.name %></h2>
+    </div>
+    <div class="card-body">
+      <%= render partial: 'calendars/sync_status', locals: { calendar: calendar } %>
+
+      <ul class="list-group">
+        <% calendar.events.each do |event| %>
+          <li class="list-group-item">
+            <strong><%= event.summary %></strong><br/>
+            <small><%= display_time(event.start_time) %> - <%= display_time(event.end_time) %></small>
+            <p><%= event.description %></p>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</turbo-frame>

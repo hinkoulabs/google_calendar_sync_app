@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_13_145038) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_14_101706) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,6 +19,10 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_13_145038) do
     t.string "google_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.boolean "syncing"
+    t.datetime "synced_at", precision: nil
+    t.index ["user_id"], name: "index_calendars_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -33,5 +37,26 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_13_145038) do
     t.index ["calendar_id"], name: "index_events_on_calendar_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "message"
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "name"
+    t.string "google_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "access_token"
+    t.string "refresh_token"
+  end
+
+  add_foreign_key "calendars", "users"
   add_foreign_key "events", "calendars"
+  add_foreign_key "notifications", "users"
 end

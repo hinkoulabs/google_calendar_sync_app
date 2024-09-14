@@ -1,20 +1,23 @@
-<h1>Your Calendars</h1>
+<%= turbo_stream_from current_user, target: "user_calendars_list_#{current_user.id}" %>
 
-<%= notice %>
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1><%= t('calendars.title') %> [<%= current_user.email %>]</h1>
+    <div>
+      <%= link_to t('calendars.sync_button'), sync_calendars_path, data: { "turbo-method": :post }, class: "btn btn-primary #{'disabled' if @sync_status && !@sync_status.ready_to_sync?}" %>
+      <%= link_to t('logout'), logout_path, data: { "turbo-method": :delete }, class: 'btn btn-danger' %>
+    </div>
+  </div>
 
-<%= link_to 'Logout', logout_path, data: { "turbo-method": :delete } %>
-
-<% @calendars.each do |calendar| %>
-  <h2><%= calendar.name %></h2>
-  <ul>
-    <% calendar.events.each do |event| %>
-      <li>
-        <strong><%= event.summary %></strong><br/>
-        <small><%= event.start_time %> - <%= event.end_time %></small>
-        <p><%= event.description %></p>
-      </li>
+  <div id="user_calendars_list_<%= current_user.id %>">
+    <% if @calendars.present? %>
+      <% @calendars.each do |calendar| %>
+          <%= render partial: 'calendars/calendar', locals: { calendar: calendar } %>
+      <% end %>
+    <% else %>
+      <div class="alert alert-warning" role="alert">
+        <%= t('calendars.no_events') %>
+      </div>
     <% end %>
-  </ul>
-<% end %>
-
-<%= button_to 'Sync Calendars & Events', sync_calendars_path, data: { "turbo-method": :post } %>
+  </div>
+</div>

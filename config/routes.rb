@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -17,4 +19,6 @@ Rails.application.routes.draw do
       post :sync
     end
   end
+
+  mount Sidekiq::Web => '/sidekiq' # This will allow you to visit localhost:3000/sidekiq to monitor jobs
 end

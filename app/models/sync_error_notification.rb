@@ -1,0 +1,2 @@
+class SyncErrorNotification < Notification
+end

@@ -28,4 +28,27 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  login_with_google: Login with Google
+  logout: Logout
+  home:
+    intro: Welcome to the Google Calendar Sync App
+  calendars:
+    title: "Calendars"
+    sync_button: "Sync Calendars & Events"
+    no_events: "You have no calendars or events available."
+    sync:
+      success: Calendars syncing has been started.
+    sync_status:
+      syncing: Syncing in progress...
+      completed: Sync completed.
+      not_synced: Calendar has not been synced yet.
+      last_synced_at: Last synced at
+  sessions:
+    create:
+      success: Successfully logged in with Google!
+    destroy:
+      success: Logged out successfully!
+  notifications:
+    error:
+      sync_calendars: "Failed to sync calendars: %{error}"
+
