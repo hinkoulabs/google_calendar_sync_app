@@ -6,15 +6,15 @@ class SyncCalendarsJob < GoogleCalendarJob
 
     begin
       service = init_google_service(user)
-      calendar_list = service.list_calendar_lists
+      calendar_list = service.list_calendar_lists.items
 
-      google_calendar_ids = calendar_list.items.map(&:id)
+      google_calendar_ids = calendar_list.map(&:id)
 
       # delete any local calendars not present in Google Calendar
       delete_orphaned_calendars(user, google_calendar_ids)
 
       # schedule jobs to sync each calendar
-      calendar_list.items.each do |calendar|
+      calendar_list.each do |calendar|
         local_calendar = user.calendars.find_or_create_by(google_id: calendar.id)
         local_calendar.update!(name: calendar.summary)
 

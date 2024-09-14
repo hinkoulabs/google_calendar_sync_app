@@ -3,9 +3,7 @@
 one:
   user: one
   message: MyString
-  notification_type: MyString
 
 two:
   user: two
   message: MyString
-  notification_type: MyString

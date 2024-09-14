@@ -1,11 +1,16 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  email: MyString
-  name: MyString
-  google_id: MyString
+  email: test@gmail.com
+  name: Jon Doe
+  google_id: jon_doe
 
 two:
-  email: MyString
-  name: MyString
-  google_id: MyString
+  email: test2@gmail.com
+  name: Adam Smith
+  google_id: adam_smith
+
+user_without_calendars:
+  email: test3@gmail.com
+  name: Adam Smith
+  google_id: no_events

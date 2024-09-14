@@ -1,17 +1,17 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  summary: MyString
-  description: MyText
+  summary: Intro Call
+  description: Call with discussion
   start_time: 2024-09-13 16:50:38
   end_time: 2024-09-13 16:50:38
   calendar: one
-  google_id: MyString
+  google_id: ev1
 
 two:
-  summary: MyString
-  description: MyText
+  summary: Project Details
+  description: Call to discuss problems
   start_time: 2024-09-13 16:50:38
   end_time: 2024-09-13 16:50:38
   calendar: two
-  google_id: MyString
+  google_id: ev2

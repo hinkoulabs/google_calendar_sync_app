@@ -4,6 +4,8 @@ class Calendar < ApplicationRecord
 
   scope :syncing, -> { where(syncing: true) }
 
+  validates :google_id, presence: true, uniqueness: { scope: :user_id }
+
   # broadcast on calendar creation to the current user's channel
   after_create_commit do
     broadcast_append_to user, target: "user_calendars_list_#{user.id}", partial: "calendars/calendar", locals: { calendar: self }

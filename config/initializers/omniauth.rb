@@ -3,8 +3,8 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     scope: 'userinfo.email,calendar',
     access_type: 'offline',
     prompt: 'consent',
-    # TODO refactor it
-    redirect_uri: 'http://localhost:3000/auth/google_oauth2/callback'
+    redirect_uri: ENV['REDIRECT_URI']
   }
 end
+
 OmniAuth.config.allowed_request_methods = %i[get]
