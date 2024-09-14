@@ -365,6 +365,8 @@ GEM
     sass-embedded (1.78.0)
       google-protobuf (~> 4.27)
       rake (>= 13)
+    sass-embedded (1.78.0-arm64-darwin)
+      google-protobuf (~> 4.27)
     sassc-embedded (1.78.0)
       sass-embedded (~> 1.78)
     securerandom (0.3.1)
@@ -452,7 +454,7 @@ DEPENDENCIES
   dartsass-sprockets
   debug
   dotenv-rails
-  error_highlight (>= 0.4.0)
+  error_highlight (= 0.6.0)
   google-api-client (~> 0.53.0)
   googleauth
   importmap-rails
