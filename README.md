@@ -22,23 +22,7 @@ The **Google Calendar Sync App** allows users to log in using their Google accou
    cd google_calendar_sync_app
    ```
 
-2. **Build and run the Docker containers:**
-
-   ```
-   docker-compose build
-   docker-compose up -d
-   ```
-
-3. **Set up the database:**
-
-   Access the app container and run the database setup commands:
-
-   ```
-   docker-compose exec web bundle exec rails db:create
-   docker-compose exec web bundle exec rails db:migrate
-   ```
-
-4. **Set up the environment variables:**
+2. **Set up the environment variables:**
 
    Create a `.env` file in the project root directory with the following content:
 
@@ -61,6 +45,22 @@ The **Google Calendar Sync App** allows users to log in using their Google accou
    ```
 
    **Note**: You need to set the `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` values by creating a project in the [Google Developer Console](https://console.developers.google.com/) and setting up OAuth credentials.
+
+3. **Build and run the Docker containers:**
+
+   ```
+   docker-compose build
+   docker-compose up -d
+   ```
+
+4. **Set up the database:**
+
+   Access the app container and run the database setup commands:
+
+   ```
+   docker-compose exec web bundle exec rails db:create
+   docker-compose exec web bundle exec rails db:migrate
+   ```
 
 5. **Access the app:**
 
